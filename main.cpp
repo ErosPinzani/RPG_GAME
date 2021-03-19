@@ -15,11 +15,6 @@ using namespace std;
 template <class T> using sptr = std::shared_ptr<T>;
 
 
-
-
-
-
-
 int main(){
     //variables
     int HeroChoice;
