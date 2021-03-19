@@ -1,32 +1,10 @@
 //
-// Created by erosp on 27/02/2021.
+// Created by erosp on 19/03/2021.
 //
 
-#ifndef MAIN_CPP_FUNCTIONS_H
-#define MAIN_CPP_FUNCTIONS_H
+#include "Function.h"
 
-#include "Hero.h"
-#include "PickUpClass.h"
-#include "Enemy.h"
-#include "TextDisplayClass.h"
-#include "AoeBullet.h"
-#include "Chest.h"
-// Add a short alias for std::shared_ptr to the current environment
-template <class T> using sptr = std::shared_ptr<T>;
-
-void item_collision(Hero &Hero, vector<sptr<PickUpClass>> &pickUpArray);
-void enemy_collision_player(Hero &Hero, vector<sptr<Enemy>> &enemyArray, TextDisplayClass &TextDisplay, vector<sptr<TextDisplayClass>> &textDisplayArray, sf::Clock &clock);
-void aoe_collision(vector<sptr<AoeBullet>> &AoeBulletArray, vector<sptr<Enemy>> &enemyArray, vector<sptr<Chest>> &chestArray, TextDisplayClass &TextDisplay, vector<sptr<TextDisplayClass>> &textDisplayArray);
-void aggro(vector<sptr<Enemy>> &enemyArray, Hero &Hero, sf::Clock &clock);
-void delete_enemy(vector<sptr<Enemy>> &enemyArray, PickUpClass &PickUp, vector<sptr<PickUpClass>> &pickUpArray, Enemy &Blood, vector<sptr<Enemy>> &bloodArray);
-void delete_AoeBullet(vector<sptr<AoeBullet>> &AoeBulletArray);
-void delete_text(vector<sptr<TextDisplayClass>> &textDisplayArray);
-void delete_chest(vector<sptr<Chest>> &chestArray, Chest &OpenChest, vector<sptr<Chest>> &openChestArray, PickUpClass &PickUp, vector<sptr<PickUpClass>> &pickUpArray);
-void delete_PickUp_items(vector<sptr<PickUpClass>> &pickUpArray);
-void draw(vector<sptr<Enemy>> &bloodArray, vector<sptr<Chest>> &chestArray, vector<sptr<Chest>> &openChestArray, vector<sptr<PickUpClass>> &pickUpArray, vector<sptr<AoeBullet>> &AoeBulletArray, vector<sptr<Enemy>> &enemyArray, vector<sptr<TextDisplayClass>> &textDisplayArray, Hero &Hero, sf::RenderWindow &window);
-
-
-void item_collision(Hero &Hero, vector<sptr<PickUpClass>> &pickUpArray){
+void Function::item_collision(Hero &Hero, vector<sptr<PickUpClass>> &pickUpArray){
     vector<sptr<PickUpClass>>::const_iterator iter;
     int counter = 0;
     for (iter = pickUpArray.begin(); iter != pickUpArray.end(); iter++) {
@@ -39,7 +17,7 @@ void item_collision(Hero &Hero, vector<sptr<PickUpClass>> &pickUpArray){
     }
 }
 
-void enemy_collision_player(Hero &Hero, vector<sptr<Enemy>> &enemyArray, TextDisplayClass &TextDisplay, vector<sptr<TextDisplayClass>> &textDisplayArray, sf::Clock &clock){
+void Function::enemy_collision_player(Hero &Hero, vector<sptr<Enemy>> &enemyArray, TextDisplayClass &TextDisplay, vector<sptr<TextDisplayClass>> &textDisplayArray, sf::Clock &clock){
     vector<sptr<Enemy>>::const_iterator iter;
     sf::Time elapsed = clock.getElapsedTime();
 
@@ -61,7 +39,7 @@ void enemy_collision_player(Hero &Hero, vector<sptr<Enemy>> &enemyArray, TextDis
     }
 }
 
-void aoe_collision(vector<sptr<AoeBullet>> &AoeBulletArray, vector<sptr<Enemy>> &enemyArray, vector<sptr<Chest>> &chestArray, TextDisplayClass &TextDisplay, vector<sptr<TextDisplayClass>> &textDisplayArray){
+void Function::aoe_collision(vector<sptr<AoeBullet>> &AoeBulletArray, vector<sptr<Enemy>> &enemyArray, vector<sptr<Chest>> &chestArray, TextDisplayClass &TextDisplay, vector<sptr<TextDisplayClass>> &textDisplayArray){
     vector<sptr<AoeBullet>>::const_iterator iter;
     vector<sptr<Enemy>>::const_iterator iter1;
     vector<sptr<Chest>>::const_iterator iter2;
@@ -102,7 +80,7 @@ void aoe_collision(vector<sptr<AoeBullet>> &AoeBulletArray, vector<sptr<Enemy>> 
     }
 }
 
-void aggro(vector<sptr<Enemy>> &enemyArray, Hero &Hero, sf::Clock &clock){
+void Function::aggro(vector<sptr<Enemy>> &enemyArray, Hero &Hero, sf::Clock &clock){
     vector<sptr<Enemy>>::const_iterator iter;
     sf::Time elapsed = clock.getElapsedTime();
     int counter = 0;
@@ -159,7 +137,7 @@ void aggro(vector<sptr<Enemy>> &enemyArray, Hero &Hero, sf::Clock &clock){
     }
 }
 
-void delete_enemy(vector<sptr<Enemy>> &enemyArray, PickUpClass &PickUp, vector<sptr<PickUpClass>> &pickUpArray, Enemy &Blood, vector<sptr<Enemy>> &bloodArray){
+void Function::delete_enemy(vector<sptr<Enemy>> &enemyArray, PickUpClass &PickUp, vector<sptr<PickUpClass>> &pickUpArray, Enemy &Blood, vector<sptr<Enemy>> &bloodArray){
     vector<sptr<Enemy>>::const_iterator iter;
     int counter = 0;
     for (iter = enemyArray.begin(); iter != enemyArray.end(); iter++) {
@@ -182,7 +160,7 @@ void delete_enemy(vector<sptr<Enemy>> &enemyArray, PickUpClass &PickUp, vector<s
     }
 }
 
-void delete_AoeBullet(vector<sptr<AoeBullet>> &AoeBulletArray){
+void Function::delete_AoeBullet(vector<sptr<AoeBullet>> &AoeBulletArray){
     vector<sptr<AoeBullet>>::const_iterator iter;
     int counter = 0;
     for (iter = AoeBulletArray.begin(); iter != AoeBulletArray.end(); iter++) {
@@ -194,7 +172,7 @@ void delete_AoeBullet(vector<sptr<AoeBullet>> &AoeBulletArray){
     }
 }
 
-void delete_text(vector<sptr<TextDisplayClass>> &textDisplayArray){
+void Function::delete_text(vector<sptr<TextDisplayClass>> &textDisplayArray){
     vector<sptr<TextDisplayClass>>::const_iterator iter;
     int counter = 0;
     for (iter = textDisplayArray.begin(); iter != textDisplayArray.end(); iter++) {
@@ -206,7 +184,7 @@ void delete_text(vector<sptr<TextDisplayClass>> &textDisplayArray){
     }
 }
 
-void delete_chest(vector<sptr<Chest>> &chestArray, Chest &OpenChest, vector<sptr<Chest>> &openChestArray, PickUpClass &PickUp, vector<sptr<PickUpClass>> &pickUpArray){
+void Function::delete_chest(vector<sptr<Chest>> &chestArray, Chest &OpenChest, vector<sptr<Chest>> &openChestArray, PickUpClass &PickUp, vector<sptr<PickUpClass>> &pickUpArray){
     vector<sptr<Chest>>::const_iterator iter;
     int counter = 0;
     for (iter = chestArray.begin(); iter != chestArray.end(); iter++) {
@@ -229,7 +207,7 @@ void delete_chest(vector<sptr<Chest>> &chestArray, Chest &OpenChest, vector<sptr
     }
 }
 
-void delete_PickUp_items(vector<sptr<PickUpClass>> &pickUpArray){
+void Function::delete_PickUp_items(vector<sptr<PickUpClass>> &pickUpArray){
     vector<sptr<PickUpClass>>::const_iterator iter;
     int counter = 0;
     for (iter = pickUpArray.begin(); iter != pickUpArray.end(); iter++) {
@@ -241,7 +219,7 @@ void delete_PickUp_items(vector<sptr<PickUpClass>> &pickUpArray){
     }
 }
 
-void draw(vector<sptr<Enemy>> &bloodArray, vector<sptr<Chest>> &chestArray, vector<sptr<Chest>> &openChestArray, vector<sptr<PickUpClass>> &pickUpArray, vector<sptr<AoeBullet>> &AoeBulletArray, vector<sptr<Enemy>> &enemyArray, vector<sptr<TextDisplayClass>> &textDisplayArray, Hero &Hero, sf::RenderWindow &window){
+void Function::draw(vector<sptr<Enemy>> &bloodArray, vector<sptr<Chest>> &chestArray, vector<sptr<Chest>> &openChestArray, vector<sptr<PickUpClass>> &pickUpArray, vector<sptr<AoeBullet>> &AoeBulletArray, vector<sptr<Enemy>> &enemyArray, vector<sptr<TextDisplayClass>> &textDisplayArray, Hero &Hero, sf::RenderWindow &window){
     int counter;
     vector<sptr<Enemy>>::const_iterator iter1;
     vector<sptr<Chest>>::const_iterator iter2;
@@ -316,6 +294,3 @@ void draw(vector<sptr<Enemy>> &bloodArray, vector<sptr<Chest>> &chestArray, vect
     //draw hero
     window.draw(Hero.sprite);
 }
-
-
-#endif //MAIN_CPP_FUNCTIONS_H

@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-#include "Functions.h"
+#include "Function.h"
 #include "StBullet.h"
 #include "MeleeWeapon.h"
 #include "RenderMap.h"
@@ -178,16 +178,16 @@ int main(){
         sf::Time elapsed4 = clock4.getElapsedTime();
 
         //player collides with PickUpClass items
-        item_collision(Hero1, pickUpArray);
+        Function::item_collision(Hero1, pickUpArray);
 
         //enemy collision with player
-        enemy_collision_player(Hero1, enemyArray, TextDisplay1, textDisplayArray, clock2);
+        Function::enemy_collision_player(Hero1, enemyArray, TextDisplay1, textDisplayArray, clock2);
 
         //AoeBullet collisions
-        aoe_collision(AoeBulletArray, enemyArray, chestArray, TextDisplay1, textDisplayArray);
+        Function::aoe_collision(AoeBulletArray, enemyArray, chestArray, TextDisplay1, textDisplayArray);
 
         //enemy aggro AI
-        aggro(enemyArray, Hero1, clock4);
+        Function::aggro(enemyArray, Hero1, clock4);
 /*
         //melee weapon
         if (elapsed3.asSeconds() >= 0.5) {
@@ -215,19 +215,19 @@ int main(){
         }
 */
         //delete dead enemy
-        delete_enemy(enemyArray, PickUp1, pickUpArray, Blood1, bloodArray);
+        Function::delete_enemy(enemyArray, PickUp1, pickUpArray, Blood1, bloodArray);
 
         //delete AoeBullet
-        delete_AoeBullet(AoeBulletArray);
+        Function::delete_AoeBullet(AoeBulletArray);
 
         //delete text
-        delete_text(textDisplayArray);
+        Function::delete_text(textDisplayArray);
 
         //delete chest
-        delete_chest(chestArray, OpenChest1, openChestArray, PickUp1, pickUpArray);
+        Function::delete_chest(chestArray, OpenChest1, openChestArray, PickUp1, pickUpArray);
 
         //delete PickUpClass items
-        delete_PickUp_items(pickUpArray);
+        Function::delete_PickUp_items(pickUpArray);
 
         //spawn new enemies
         while(n > 0){
@@ -254,7 +254,7 @@ int main(){
         }
 
         //draw
-        draw(bloodArray, chestArray, openChestArray, pickUpArray, AoeBulletArray, enemyArray, textDisplayArray, Hero1, window);
+        Function::draw(bloodArray, chestArray, openChestArray, pickUpArray, AoeBulletArray, enemyArray, textDisplayArray, Hero1, window);
 
         //update MeleeWeapon
         MeleeWeapon1.Update();
