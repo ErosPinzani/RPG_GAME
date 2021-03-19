@@ -11,6 +11,21 @@
 #include "../Map.h"
 #include "../Chest.h"
 #include "../AoeBullet.h"
+#include "../Function.h"
+
+class Collisions: public testing::Test {
+public:
+    AoeBullet Bullet1;
+    Enemy Enemy1;
+    TextDisplayClass TextDisplay1;
+    vector<sptr<struct AoeBullet>> AoeBulletArray;
+    vector<sptr<struct Enemy>> enemyArray;
+    vector<sptr<struct Chest>> chestArray;
+    vector<sptr<struct TextDisplayClass>> textDisplayArray;
+    std::shared_ptr<Function> function;
+
+
+};
 
 TEST(Collision, WallCollision){
     Map::getInstance()->vectorM1 = std::vector<int> {
@@ -40,24 +55,24 @@ TEST(Collision, WallCollision){
     AoeBullet Bullet1;
     Bullet1.rect.setPosition(100, 100);
 
-    Bullet1.direction = 3;
+    Bullet1.direction = Bullet::left;
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100);
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);
     Bullet1.Update();
-    ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100 - Bullet1.movementSpeed);
+    ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100 - Bullet1.getMovementSpeed());
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);
 
-    Bullet1.direction = 4;
+    Bullet1.direction = Bullet::right;
     Bullet1.Update();
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100);
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);
 
-    Bullet1.direction = 2;
+    Bullet1.direction = Bullet::down;
     Bullet1.Update();
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100);
-    ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100 + Bullet1.movementSpeed);
+    ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100 + Bullet1.getMovementSpeed());
 
-    Bullet1.direction = 1;
+    Bullet1.direction = Bullet::up;
     Bullet1.Update();
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100);
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);
@@ -79,24 +94,24 @@ TEST(Collision, WallCollision){
     Bullet1.rect.setPosition(100, 100);
     Bullet1.destroy = false;
 
-    Bullet1.direction = 3;
+    Bullet1.direction = Bullet::left;
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100);
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);
     Bullet1.Update();
-    ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100 - Bullet1.movementSpeed);
+    ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100 - Bullet1.getMovementSpeed());
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);
 
-    Bullet1.direction = 4;
+    Bullet1.direction = Bullet::right;
     Bullet1.Update();
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100);
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);
 
-    Bullet1.direction = 2;
+    Bullet1.direction = Bullet::down;
     Bullet1.Update();
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100);
-    ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100 + Bullet1.movementSpeed);
+    ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100 + Bullet1.getMovementSpeed());
 
-    Bullet1.direction = 1;
+    Bullet1.direction = Bullet::up;
     Bullet1.Update();
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100);
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);
@@ -106,22 +121,27 @@ TEST(Collision, WallCollision){
     ASSERT_EQ((int)Bullet1.destroy, true);
 }
 
-TEST(Collision, EnemyCollision){
-    AoeBullet Bullet1;
-    Enemy Enemy1;
-
+TEST_F(Collisions, EnemyCollision){
     Enemy1.rect.setPosition(50, 100);
-    Bullet1.rect.setPosition(100, 100);
+    ASSERT_EQ(Enemy1.rect.getPosition().x, 50);
+    ASSERT_EQ(Enemy1.rect.getPosition().y, 100);
 
-    int initHp = Enemy1.hp;
-    Bullet1.attackDamage = 5;
-    Bullet1.direction = 3;
+    Bullet1.rect.setPosition(100, 100);
+    ASSERT_EQ(Bullet1.rect.getPosition().x, 100);
+    ASSERT_EQ(Bullet1.rect.getPosition().y, 100);
+
+    ASSERT_EQ(Enemy1.hp, 15);
+    ASSERT_EQ(Bullet1.getAttackDamage(), 2);
+
+    Bullet1.direction = Bullet::left;
     for (int i = 0; i < 5; i++) {
         std::cout<<Enemy1.hp<<endl;
         Bullet1.Update();
     }
+    function->aoe_collision(AoeBulletArray, enemyArray, chestArray, TextDisplay1, textDisplayArray);
+
     ASSERT_EQ((int)Bullet1.destroy, true);
-    ASSERT_EQ(Enemy1.hp, initHp - Bullet1.attackDamage);
+    ASSERT_EQ(Enemy1.hp, Enemy1.hp - Bullet1.getAttackDamage());
 }
 
 #endif //ENEMY_CPP_COLLISIONS_H

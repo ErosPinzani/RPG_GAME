@@ -45,7 +45,7 @@ TEST(Character, Movement) {
 
     ASSERT_EQ(Hero1.Walkable(4), true);
     Hero1.UpdateMovement(true);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24 + Hero1.movementSpeed);
+    ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24 + Hero1.getMovementSpeed());
     ASSERT_EQ((int)Hero1.rect.getPosition().y, 200-32);
 
     ASSERT_EQ(Hero1.Walkable(3), true);
@@ -56,7 +56,7 @@ TEST(Character, Movement) {
     ASSERT_EQ(Hero1.Walkable(2), true);
     Hero1.UpdateMovement(true, sf::Keyboard::S);
     ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 200-32 + Hero1.movementSpeed);
+    ASSERT_EQ((int)Hero1.rect.getPosition().y, 200-32 + Hero1.getMovementSpeed());
 
     ASSERT_EQ(Hero1.Walkable(1), true);
     Hero1.UpdateMovement(true, sf::Keyboard::W);

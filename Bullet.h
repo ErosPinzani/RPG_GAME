@@ -14,6 +14,7 @@ public:
 
     //getters
     int getAttackDamage();
+    int getMovementSpeed();
 
     bool destroy = false;
     int counterLifetime = 0;

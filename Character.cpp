@@ -68,6 +68,7 @@ bool Character::Walkable (int direction) {
 
 // getters
 int Character::getMaxhp() {return Character::maxhp;}
+int Character::getMovementSpeed() {return Character::movementSpeed;}
 int Character::getAttackDamage() {return Character::attackDamage;}
 int Character::getDirection() {return Character::direction;}
 

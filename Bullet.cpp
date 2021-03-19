@@ -51,6 +51,7 @@ void Bullet::Walkable (int direction) {
 
 //getters
 int Bullet::getAttackDamage() {return Bullet::attackDamage;}
+int Bullet::getMovementSpeed() {return Bullet::movementSpeed;}
 
 //setters
 void Bullet::setMovementSpeed(int movementSpeed) {Bullet::movementSpeed = movementSpeed;}

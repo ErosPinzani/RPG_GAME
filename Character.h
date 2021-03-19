@@ -16,6 +16,7 @@ public:
 
     // getters
     int getMaxhp();
+    int getMovementSpeed();
     int getAttackDamage();
     int getDirection();
 
