@@ -11,7 +11,7 @@
 #include <windows.h>
 
 
-
+/*
 TEST(Character, Movement) {
     Sleep(1000);
     Map::getInstance()->vectorM1 = std::vector<int> {
@@ -105,5 +105,5 @@ TEST(Character, Movement) {
         Hero1.UpdateMovement(true, sf::Keyboard::S);
     ASSERT_EQ((int)Hero1.rect.getPosition().y, 368);
 }
-
+*/
 #endif //MAIN_CPP_MOVEMENT_H

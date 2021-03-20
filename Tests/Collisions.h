@@ -18,16 +18,14 @@ public:
     AoeBullet Bullet1;
     Enemy Enemy1;
     TextDisplayClass TextDisplay1;
-    vector<sptr<struct AoeBullet>> AoeBulletArray;
-    vector<sptr<struct Enemy>> enemyArray;
-    vector<sptr<struct Chest>> chestArray;
-    vector<sptr<struct TextDisplayClass>> textDisplayArray;
+    vector<sptr<AoeBullet>> AoeBulletArray;
+    vector<sptr<Enemy>> enemyArray;
+    vector<sptr<Chest>> chestArray;
+    vector<sptr<TextDisplayClass>> textDisplayArray;
     std::shared_ptr<Function> function;
-
-
 };
 
-TEST(Collision, WallCollision){
+TEST_F(Collisions, WallCollision){
     Map::getInstance()->vectorM1 = std::vector<int> {
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -52,7 +50,6 @@ TEST(Collision, WallCollision){
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
     };
 
-    AoeBullet Bullet1;
     Bullet1.rect.setPosition(100, 100);
 
     Bullet1.direction = Bullet::left;
@@ -134,11 +131,11 @@ TEST_F(Collisions, EnemyCollision){
     ASSERT_EQ(Bullet1.getAttackDamage(), 2);
 
     Bullet1.direction = Bullet::left;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
         std::cout<<Enemy1.hp<<endl;
         Bullet1.Update();
+        function->aoe_collision(AoeBulletArray, enemyArray, chestArray, TextDisplay1, textDisplayArray);
     }
-    function->aoe_collision(AoeBulletArray, enemyArray, chestArray, TextDisplay1, textDisplayArray);
 
     ASSERT_EQ((int)Bullet1.destroy, true);
     ASSERT_EQ(Enemy1.hp, Enemy1.hp - Bullet1.getAttackDamage());

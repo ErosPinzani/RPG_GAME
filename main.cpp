@@ -25,6 +25,8 @@ int main(){
     int n = 24; //enemy number
     int k = 5; //chest number
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     //create window
     sf::RenderWindow window(sf::VideoMode(1500, 850), "RPG Game");
     window.setFramerateLimit(60);
@@ -34,6 +36,8 @@ int main(){
     view1.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
     view1.setCenter(sf::Vector2f(view1.getSize().x/2, view1.getSize().y/2));
     window.setView(view1);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //set icon
     sf::Image icon;
@@ -83,6 +87,8 @@ int main(){
     sf::Texture textureChest;
     if(!textureChest.loadFromFile(R"(Resources/Chest.png)"))
         return EXIT_FAILURE;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Hero object
     class Hero Hero1;
@@ -151,6 +157,8 @@ int main(){
 
     //map
     class RenderMap RenderMap1;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //start game loop
     while (window.isOpen()) {
