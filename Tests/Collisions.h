@@ -91,9 +91,10 @@ TEST_F(Collisions, WallCollision){
     Bullet1.rect.setPosition(100, 100);
     Bullet1.destroy = false;
 
-    Bullet1.direction = Bullet::left;
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100);
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);
+
+    Bullet1.direction = Bullet::left;
     Bullet1.Update();
     ASSERT_EQ((int)Bullet1.rect.getPosition().x, 100 - Bullet1.getMovementSpeed());
     ASSERT_EQ((int)Bullet1.rect.getPosition().y, 100);

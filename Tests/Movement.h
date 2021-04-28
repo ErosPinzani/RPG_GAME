@@ -11,9 +11,9 @@
 #include <windows.h>
 
 
-/*
+
 TEST(Character, Movement) {
-    Sleep(1000);
+    //Sleep(1000);
     Map::getInstance()->vectorM1 = std::vector<int> {
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
             1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -40,28 +40,28 @@ TEST(Character, Movement) {
 
     Hero Hero1;
 
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 200-32);
+    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
+    ASSERT_EQ((int)Hero1.rect.getPosition().y, 168);
 
-    ASSERT_EQ(Hero1.Walkable(4), true);
-    Hero1.UpdateMovement(true);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24 + Hero1.getMovementSpeed());
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 200-32);
+    ASSERT_EQ(Hero1.Walkable(Hero1.right), true);
+    Hero1.UpdateMovement(true, sf::Keyboard::D);
+    ASSERT_EQ((int)Hero1.rect.getPosition().x, 181);
+    ASSERT_EQ((int)Hero1.rect.getPosition().y, 168);
 
-    ASSERT_EQ(Hero1.Walkable(3), true);
+    ASSERT_EQ(Hero1.Walkable(Hero1.left), true);
     Hero1.UpdateMovement(true, sf::Keyboard::A);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 200-32);
+    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
+    ASSERT_EQ((int)Hero1.rect.getPosition().y, 168);
 
-    ASSERT_EQ(Hero1.Walkable(2), true);
+    ASSERT_EQ(Hero1.Walkable(Hero1.down), true);
     Hero1.UpdateMovement(true, sf::Keyboard::S);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 200-32 + Hero1.getMovementSpeed());
+    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
+    ASSERT_EQ((int)Hero1.rect.getPosition().y, 173);
 
-    ASSERT_EQ(Hero1.Walkable(1), true);
+    ASSERT_EQ(Hero1.Walkable(Hero1.up), true);
     Hero1.UpdateMovement(true, sf::Keyboard::W);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 200-32);
+    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
+    ASSERT_EQ((int)Hero1.rect.getPosition().y, 168);
 
     for (int i = 0; i < 100; i++)
         Hero1.UpdateMovement(true, sf::Keyboard::S);
@@ -81,22 +81,22 @@ TEST(Character, Movement) {
     ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24);
     ASSERT_EQ((int)Hero1.rect.getPosition().y, 268);
 
-    ASSERT_EQ(Hero1.Walkable(4), false);
+    ASSERT_EQ(Hero1.Walkable(Hero1.right), false);
     Hero1.UpdateMovement(true);
     ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
     ASSERT_EQ((int)Hero1.rect.getPosition().y, 268);
 
-    ASSERT_EQ(Hero1.Walkable(3), false);
+    ASSERT_EQ(Hero1.Walkable(Hero1.left), false);
     Hero1.UpdateMovement(true, sf::Keyboard::A);
     ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
     ASSERT_EQ((int)Hero1.rect.getPosition().y, 268);
 
-    ASSERT_EQ(Hero1.Walkable(2), true);
+    ASSERT_EQ(Hero1.Walkable(Hero1.down), true);
     Hero1.UpdateMovement(true, sf::Keyboard::S);
     ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
     ASSERT_EQ((int)Hero1.rect.getPosition().y, 273);
 
-    ASSERT_EQ(Hero1.Walkable(1), false);
+    ASSERT_EQ(Hero1.Walkable(Hero1.up), false);
     Hero1.UpdateMovement(true, sf::Keyboard::W);
     ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
     ASSERT_EQ((int)Hero1.rect.getPosition().y, 273);
@@ -105,5 +105,5 @@ TEST(Character, Movement) {
         Hero1.UpdateMovement(true, sf::Keyboard::S);
     ASSERT_EQ((int)Hero1.rect.getPosition().y, 368);
 }
-*/
+
 #endif //MAIN_CPP_MOVEMENT_H
