@@ -10,100 +10,39 @@
 #include "../Map.h"
 #include <windows.h>
 
-
-
 TEST(Character, Movement) {
-    //Sleep(1000);
-    Map::getInstance()->vectorM1 = std::vector<int> {
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,1,1,1,1,1,1,0,0,1,0,1,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,1,1,1,
-            1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
-            1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,1,1,0,1,1,0,0,0,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,
-            1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,
-            1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-};
-
-    Hero Hero1;
-
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 168);
-
-    ASSERT_EQ(Hero1.Walkable(Hero1.right), true);
-    Hero1.UpdateMovement(true, sf::Keyboard::D);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 181);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 168);
-
-    ASSERT_EQ(Hero1.Walkable(Hero1.left), true);
-    Hero1.UpdateMovement(true, sf::Keyboard::A);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 168);
-
-    ASSERT_EQ(Hero1.Walkable(Hero1.down), true);
-    Hero1.UpdateMovement(true, sf::Keyboard::S);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 173);
-
-    ASSERT_EQ(Hero1.Walkable(Hero1.up), true);
-    Hero1.UpdateMovement(true, sf::Keyboard::W);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 168);
-
-    for (int i = 0; i < 100; i++)
-        Hero1.UpdateMovement(true, sf::Keyboard::S);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 268);
-
-
-    Map::getInstance()->vectorM1 = std::vector<int> {
-            1,1,1,1,1,1,1,1,1,1,1,1,
-            1,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,0,0,0,0,0,0,0,0,1,
-            1,1,1,1,1,1,1,1,1,1,1,1
+    Map::getInstance()->vectorM1 = std::vector<int>{
+            1,1,1,
+            1,0,1,
+            1,0,1,
+            1,1,1
     };
+    Hero Hero(10,10,3,50,50);
 
+    //test posizione iniziale
+    ASSERT_EQ((int)Hero.rect.getPosition().x, 50);
+    ASSERT_EQ((int)Hero.rect.getPosition().y, 50);
 
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 200-24);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 268);
+    //test movimento e collisione muro
+    ASSERT_EQ(Hero.Walkable(Hero.left), false);
+    Hero.UpdateMovement(true, sf::Keyboard::A);
+    ASSERT_EQ((int)Hero.rect.getPosition().x, 50);
+    ASSERT_EQ((int)Hero.rect.getPosition().y, 50);
 
-    ASSERT_EQ(Hero1.Walkable(Hero1.right), false);
-    Hero1.UpdateMovement(true);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 268);
+    ASSERT_EQ(Hero.Walkable(Hero.right), true);
+    Hero.UpdateMovement(true, sf::Keyboard::D);
+    ASSERT_EQ((int)Hero.rect.getPosition().x, 53);
+    ASSERT_EQ((int)Hero.rect.getPosition().y, 50);
 
-    ASSERT_EQ(Hero1.Walkable(Hero1.left), false);
-    Hero1.UpdateMovement(true, sf::Keyboard::A);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 268);
+    ASSERT_EQ(Hero.Walkable(Hero.up), false);
+    Hero.UpdateMovement(true, sf::Keyboard::W);
+    ASSERT_EQ((int)Hero.rect.getPosition().x, 53);
+    ASSERT_EQ((int)Hero.rect.getPosition().y, 50);
 
-    ASSERT_EQ(Hero1.Walkable(Hero1.down), true);
-    Hero1.UpdateMovement(true, sf::Keyboard::S);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 273);
-
-    ASSERT_EQ(Hero1.Walkable(Hero1.up), false);
-    Hero1.UpdateMovement(true, sf::Keyboard::W);
-    ASSERT_EQ((int)Hero1.rect.getPosition().x, 176);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 273);
-
-    for (int i = 0; i < 100; i++)
-        Hero1.UpdateMovement(true, sf::Keyboard::S);
-    ASSERT_EQ((int)Hero1.rect.getPosition().y, 368);
+    ASSERT_EQ(Hero.Walkable(Hero.down), true);
+    Hero.UpdateMovement(true, sf::Keyboard::S);
+    ASSERT_EQ((int)Hero.rect.getPosition().x, 53);
+    ASSERT_EQ((int)Hero.rect.getPosition().y, 53);
 }
 
 #endif //MAIN_CPP_MOVEMENT_H

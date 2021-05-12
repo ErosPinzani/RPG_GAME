@@ -13,6 +13,7 @@ public:
     int coins = 0;
 
     Hero();
+    Hero(int maxHp, int Hp, int MovementSpeed, float x, float y);
 };
 
 
