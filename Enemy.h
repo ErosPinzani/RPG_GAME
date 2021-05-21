@@ -16,7 +16,8 @@ public:
     bool aggro = false;
 
     Enemy();
-    void UpdateMovement(bool testing = false, sf::Keyboard::Key key = sf::Keyboard::D) override;
+    Enemy(int maxHp, int Hp, int MovementSpeed, int attackDamage, float x, float y);
+    void UpdateMovement(bool testing = false, Direction direction = left);
 
 };
 

@@ -16,7 +16,18 @@ Enemy::Enemy() {
     sprite.setTextureRect(sf::IntRect(0, 31.7*2, 31.7, 31.7));
 }
 
-void Enemy::UpdateMovement(bool testing, sf::Keyboard::Key key) {
+Enemy::Enemy(int maxHp, int Hp, int MovementSpeed, int attackDamage, float x, float y){
+    setHp(Hp);
+    setMaxhp(maxHp);
+    setMovementSpeed(MovementSpeed);
+    setAttackDamage(attackDamage);
+
+    rect.setSize(sf::Vector2f(31.7, 31.7));
+    rect.setPosition(x, y);
+    sprite.setTextureRect(sf::IntRect(0, 31.7*2, 31.7, 31.7));
+}
+
+void Enemy::UpdateMovement(bool testing, Direction direction) {
     sprite.setPosition(rect.getPosition());
     text.setPosition(rect.getPosition().x - rect.getSize().x/2 - 5, rect.getPosition().y - rect.getSize().y/2 - 5);
     if (direction == up && Character::Walkable(up)){ //up

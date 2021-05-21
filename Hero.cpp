@@ -19,6 +19,7 @@ Hero::Hero(int maxHp, int Hp, int MovementSpeed, float x, float y){
     setHp(Hp);
     setMaxhp(maxHp);
     setMovementSpeed(MovementSpeed);
+
     rect.setSize(sf::Vector2f(31.7, 31.7));
     rect.setPosition(x, y);
     rect.setFillColor(sf::Color::Blue);
